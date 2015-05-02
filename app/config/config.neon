@@ -1,11 +1,12 @@
 # WARNING: it is CRITICAL that this file & directory are NOT accessible directly via a web browser!
 # http://nette.org/security-warning
 
-parameters:
-
-
 php:
 	date.timezone: Europe/Prague
+
+
+extensions:
+	facebook: Kdyby\Facebook\DI\FacebookExtension
 
 
 application:
@@ -16,7 +17,18 @@ application:
 
 session:
 	expiration: 14 days
+	debugger: on
+
+
+facebook:
+	permissions: [publish_pages, manage_pages]
+	graphVersion: v2.3
 
 
 services:
 	router: App\RouterFactory::createRouter
+
+	presenter.homepage:
+		class: App\Presenters\HomepagePresenter
+		setup:
+			- $fbPageId(%fbPageId%)

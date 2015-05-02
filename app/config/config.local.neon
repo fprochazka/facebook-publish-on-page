@@ -1,0 +1,7 @@
+parameters:
+	fbPageId: 123
+
+
+facebook:
+	appId: "123"
+	appSecret: "123"
